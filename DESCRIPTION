@@ -1,0 +1,18 @@
+Package: openMic
+Title: Add Live Captioning to Xaringan Slides
+Version: 0.0.1
+Authors@R: 
+    person(given = "Ellis",
+           family = "Hughes",
+           role = c("aut", "cre"),
+           email = "ellishughes@live.com",
+           comment = c(ORCID = "0000-0003-0637-4436"))
+Description: This package makes it easy to add closed 
+    captioning to your xaringan slides
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+  htmltools
