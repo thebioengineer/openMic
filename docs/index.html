@@ -24,8 +24,6 @@ class: center, middle, inverse, title-slide
 
 
 
----
-
 ## openMic
 
 The goal of openMic is to add closed captions easily to your presentations using the built-in capabilities of your browser (SpeechRecognition or webkitSpeechRecognition).
@@ -50,10 +48,11 @@ This package is for creating closed captions in xaringan (or html) presentations
 
 Add this to your presentation by adding the following chunk into your presentation:
 
+````markdown
+```{r openMic, include = FALSE}
+openMic::openMic()
+```
 ````
-
-````
-
 ---
 
 ## Starting Closed Captioning
