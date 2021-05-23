@@ -16,3 +16,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
   htmltools
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr
