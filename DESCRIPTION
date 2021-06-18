@@ -8,7 +8,8 @@ Authors@R:
            email = "ellishughes@live.com",
            comment = c(ORCID = "0000-0003-0637-4436"))
 Description: This package makes it easy to add closed 
-    captioning to your xaringan slides
+    captioning to your xaringan slides. Additionally it will
+    capture a transcript that can be exported.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

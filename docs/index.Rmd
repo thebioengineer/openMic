@@ -49,7 +49,7 @@ openMic::openMic()
 The captioning starts by default (you may have to give permission to start recording to chrome).
 
 
-To stop closed captioning, hold shift and double click the `a` button. Doing that again will restart the closed captioning.
+To stop closed captioning, hold shift and double click the `` `a` `` button. Doing that again will restart the closed captioning.
 
 Try it now! :)
 
@@ -59,4 +59,13 @@ Try it now! :)
 
 Closed Captions may get in the way of content of the slide. 
 
-Move the closed captions to the top or bottom of your screen using the `u` or `d` keys on your keyboard. 
+Move the closed captions to the top or bottom of your screen using the `` `u` ``or `` `d` `` keys on your keyboard. 
+
+---
+
+## Transcripts
+
+By default, when the recording is occurring, {openMic} will record all the closed captions. 
+
+To access the transcripts, double press `` `t` `` and the transcripts will be copied to your clipboard.
+

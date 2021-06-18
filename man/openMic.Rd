@@ -7,7 +7,7 @@
 \usage{
 openMic(location = c("bottom", "top"))
 
-html_dependency_open_mic(location)
+html_dependency_open_mic(location = "bottom")
 }
 \arguments{
 \item{location}{location where closed captions should appear: "top" or "bottom"}
