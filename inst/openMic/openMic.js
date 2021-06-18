@@ -39,6 +39,7 @@
     cc.setAttribute('style', ccOpts.loc + ': 1em; z-index:1000');
     var recognitiontext = document.createElement("span");
     recognitiontext.setAttribute('id', 'openMic-cc-text')
+    recognitiontext.setAttribute('style','text-align: left;')
     cc.appendChild(recognitiontext)
     return cc
   }
