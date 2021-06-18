@@ -18,6 +18,7 @@
 
   const ccOpts = {first: true}
   var recognizing = false;
+  var openMicTranscript = "";
 
 
   function setCCoptions() {
@@ -26,6 +27,7 @@
         document.getElementById('openMic-cc-options').textContent
       )
       ccOpts.loc = opts.loc || "bottom"
+      ccOpts.transcribe = opts.transcript || true
     }
   }
 
@@ -92,6 +94,27 @@
         });
   }
 
+  function splitRows(s){
+    var outputArray = []
+    var row = ""
+    var res = s.split(" ")
+    var row2 = ""
+
+    for(var i = 0; i < res.length; ++i){
+      row2 = row + " " + res[i];
+      if(row2.length < 60){
+        row = row2;
+      }else{
+        outputArray.push(row);
+        row = res[i];
+      }
+    }
+
+    outputArray.push(row);
+
+    return outputArray;
+  }
+
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
   recognition.continuous = true;
@@ -111,7 +134,19 @@
     var recognitiontext = document.getElementById('openMic-cc-text');
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if(event.results[i][0].confidence > 0.7) {
-        recognitiontext.innerHTML = capitalize(event.results[i][0].transcript);
+        var textArray = splitRows(capitalize(event.results[i][0].transcript))
+        var textContent = textArray[textArray.length-1]
+
+        if(textArray.length > 1){
+          textContent = textArray[textArray.length-2] + "<br>" + textContent;
+        }
+
+        recognitiontext.innerHTML = textContent;
+       }
+       if(ccOpts.transcribe === true){
+         if (event.results[i].isFinal) {
+           openMicTranscript = openMicTranscript + capitalize(event.results[i][0].transcript).trim() + '\n'
+         }
        }
     }
   };
@@ -122,10 +157,11 @@
 
   var lastKeypressTime = 0
   var delta = 500
-  function onDoubleClick() {
+
+  function onDoubleClick(func) {
     thisKeypressTime = new Date()
     if ( thisKeypressTime - lastKeypressTime <= delta ){
-      toggleCC();
+      func();
       thisKeypressTime = 0;
     }
     lastKeypressTime = thisKeypressTime;
@@ -137,14 +173,26 @@
     cc.setAttribute('style', ccOpts.loc + ': 1em; z-index:1000');
   }
 
+  function transcriptToClipboard (){
+    if(ccOpts.transcribe === true){
+      navigator.clipboard.writeText(openMicTranscript).then(function(){
+        window.alert("Transcript copied to clipboard")
+      })
+    }
+  }
 
   // kick off recognition
   document.addEventListener('keydown', function (ev) {
     if (ev.code === 'KeyA') {
-      onDoubleClick()
+      onDoubleClick(toggleCC)
     }
+
     if(ev.code === "KeyU" || ev.code == "KeyD" & recognizing) {
       shiftCCelement(ev.code === "KeyU" ? "top": "bottom")
+    }
+
+    if(ev.code == "KeyT"){
+      onDoubleClick(transcriptToClipboard)
     }
   })
 
