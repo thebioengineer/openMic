@@ -34,11 +34,11 @@ openMic <- function(location = c("bottom","top")) {
 #' @importFrom htmltools htmlDependency
 
 #' @export
-html_dependency_open_mic <- function(location) {
+html_dependency_open_mic <- function(location = "bottom") {
 
   opts <- sprintf(
     '<script id="openMic-cc-options" type="application/json">%s</script>',
-    paste0("{\"loc\":\"",location,"\"}")
+    paste0("{\"loc\":\"",location,"\", \"transcript\": true}")
   )
 
   htmltools::htmlDependency(
